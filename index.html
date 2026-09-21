@@ -27,26 +27,44 @@
                             <li>10h05</li>
                             <li>10h55</li>
                             <li>11h45</li>
-                        </ul><!--  -->
+                        </ul>
 
                     </td>
-                    <td id = "segunda" > </td>
-                    <td id = "terça" > </td>
-                    <td id = "quarta" > </td>
-                    <td id = "quinta" > </td>
-                    <td id = "sexta" > </td>
+                    <td id = "segunda"> </td>
+                    <td id = "terça"> </td>
+                    <td id = "quarta"> </td>
+                    <td id = "quinta"> </td>
+                    <td id = "sexta"> </td>
                 </tr>
-                <tr> 
-                    <td> <button onclick="carregar_horario('segunda')"> Carregar</button></td>
-                    <td> <button onclick="carregar_horario('terça')"> Carregar</button></td>
-                    <td> <button onclick="carregar_horario('quarta')"> Carregar</button></td>
-                    <td> <button onclick="carregar_horario('quinta')"> Carregar</button></td>
-                    <td> <button onclick="carregar_horario('sexta')"> Carregar</button></td>
+
+                <tr>
+                    <td></td>
+                    <td> <button onclick="carregar_horario('segunda')">Carregar</button></td>
+                    <td> <button onclick="carregar_horario('terça')">Carregar</button></td>
+                    <td> <button onclick="carregar_horario('quarta')">Carregar</button></td>
+                    <td> <button onclick="carregar_horario('quinta')">Carregar</button></td>
+                    <td> <button onclick="carregar_horario('sexta')">Carregar</button></td>
                 </tr>
-                
+           
+
             </tbody>
         </table>
     </main>
     <footer></footer>
+    <script> 
+    async function carregar_horario(dia){
+        const coluna_dia = document.getElementById(dia)
+        try{
+            const link= "http://localhost:3000/horario"
+
+        } catch (erro){
+            alert(erro)
+            coluna_dia.innerHTML = "Erro ao carregar Horários!"
+        }
+      
+    }
+    
+    
+    </script>
 </body>
 </html>
