@@ -6,6 +6,159 @@
     <title>Horários Kennedy</title>
 </head>
 <body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #5a2a3a;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #d63384;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 3px rgba(214, 51, 132, 0.2);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(214, 51, 132, 0.15);
+        }
+
+        thead {
+            background: linear-gradient(90deg, #f8a5c2, #e83e8c);
+            color: white;
+        }
+
+        th {
+            padding: 18px 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 16px 12px;
+            text-align: center;
+            vertical-align: top;
+            border-bottom: 1px solid #fce4ec;
+            border-right: 1px solid #fce4ec;
+        }
+
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Coluna de horários */
+        td:first-child {
+            background: #fff5f8;
+            font-weight: 500;
+            min-width: 110px;
+        }
+
+        td:first-child ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        td:first-child li {
+            padding: 6px 0;
+            color: #c2185b;
+            font-size: 0.95rem;
+        }
+
+        /* Células dos dias */
+        td[id] {
+            min-height: 180px;
+            background: #fffafc;
+            color: #6d2b4a;
+        }
+
+        td[id] ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        td[id] li {
+            background: #fce4ec;
+            margin: 6px 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-left: 4px solid #e83e8c;
+        }
+
+        /* Botões */
+        button {
+            background: linear-gradient(135deg, #e83e8c, #d63384);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(232, 62, 140, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #d63384, #c2185b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 62, 140, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Mensagens de status */
+        .mensagem {
+            color: #c2185b;
+            font-style: italic;
+            padding: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #d63384;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
     <header></header>
     <main>
         <table>
@@ -28,43 +181,54 @@
                             <li>10h55</li>
                             <li>11h45</li>
                         </ul>
-
                     </td>
-                    <td id = "segunda"> </td>
-                    <td id = "terça"> </td>
-                    <td id = "quarta"> </td>
-                    <td id = "quinta"> </td>
-                    <td id = "sexta"> </td>
+                    <td id = "Segunda"> </td>
+                    <td id = "Terça"> </td>
+                    <td id = "Quarta"> </td>
+                    <td id = "Quinta"> </td>
+                    <td id = "Sexta"> </td>
                 </tr>
-
                 <tr>
                     <td></td>
-                    <td> <button onclick="carregar_horario('segunda')">Carregar</button></td>
-                    <td> <button onclick="carregar_horario('terça')">Carregar</button></td>
-                    <td> <button onclick="carregar_horario('quarta')">Carregar</button></td>
-                    <td> <button onclick="carregar_horario('quinta')">Carregar</button></td>
-                    <td> <button onclick="carregar_horario('sexta')">Carregar</button></td>
+                    <td> <button onclick="carregar_horario('Segunda')">Carregar</button> </td>
+                    <td> <button onclick="carregar_horario('Terça')">Carregar</button> </td>
+                    <td> <button onclick="carregar_horario('Quarta')">Carregar</button> </td>
+                    <td> <button onclick="carregar_horario('Quinta')">Carregar</button> </td>
+                    <td> <button onclick="carregar_horario('Sexta')">Carregar</button> </td>
                 </tr>
-           
-
             </tbody>
         </table>
     </main>
-    <footer></footer>
-    <script> 
-    async function carregar_horario(dia){
-        const coluna_dia = document.getElementById(dia)
-        try{
-            const link= "http://localhost:3000/horario"
+    <footer></footer>   
 
-        } catch (erro){
-            alert(erro)
-            coluna_dia.innerHTML = "Erro ao carregar Horários!"
+    <script>
+
+        async function carregar_horario(dia){
+            const coluna_dia = document.getElementById(dia)
+            try {
+                const link = "http://localhost:3000/horario/" + dia
+                const consulta_api = await fetch(link)
+                if(consulta_api.ok) {
+                    const aulas_dia = await consulta_api.json()
+                    if (aulas_dia.resposta.length == 0){
+                        coluna_dia.innerHTML = "Nenhuma aula cadastrada!"
+                    } else {
+                        console.log(aulas_dia)
+                        let html = "<ul>"
+                        aulas_dia.resposta.forEach((aula1) => {
+                            html += "<li>" + aula1.Aula + "</li>"
+                        })
+                        html += "</ul>"
+                        coluna_dia.innerHTML += html
+                    }
+                }
+            } catch (erro) {
+                alert(erro)
+                coluna_dia.innerHTML = "Erro ao carregar horários!"
+            }
         }
-      
-    }
-    
-    
+
     </script>
+
 </body>
 </html>
